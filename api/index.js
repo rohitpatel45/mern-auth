@@ -5,6 +5,8 @@ import dotenv from 'dotenv'
 const app = express()
 dotenv.config()
 
+app.use(express.json())
+
 mongoose.connect(process.env.MONGOURI).then(() =>{console.log(`Connected to MongoDB`)}).catch((e) =>{
     console.log(e )
 })
@@ -21,5 +23,7 @@ res.json({
 })
 
 import userRoutes from './routes/user.routes.js'
+import authroutes from './routes/auth.routes.js'
 
 app.use("/api/user", userRoutes)
+app.use("/api/auth", authroutes)
