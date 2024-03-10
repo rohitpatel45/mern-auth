@@ -27,3 +27,13 @@ import authroutes from './routes/auth.routes.js'
 
 app.use("/api/user", userRoutes)
 app.use("/api/auth", authroutes)
+
+app.use((error, req, res, next) =>{
+const statusCode = error.statusCode || 500;
+const message = error.message || "Internal Server Error"
+return res.status(statusCode).json({
+    success: true,
+    message,
+    statusCode
+})
+})
