@@ -12,3 +12,14 @@ mongoose.connect(process.env.MONGOURI).then(() =>{console.log(`Connected to Mong
 app.listen(5000, () =>{
     console.log(`Server is running on PORT 5000`)
 })
+
+
+app.get('/' , (req, res) =>{
+res.json({
+    message : "Hello World"
+})
+})
+
+import userRoutes from './routes/user.routes.js'
+
+app.use("/api/user", userRoutes)
